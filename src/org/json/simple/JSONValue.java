@@ -10,6 +10,7 @@ import java.io.StringReader;
 import java.io.Writer;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -151,7 +152,12 @@ public class JSONValue {
             return;
 		}
 		
-		out.write(value.toString());
+		if(value instanceof Date){
+			out.write(escape("\"\\/Date("+((Date) value).getTime()+")\\/\""));
+			return;
+		}
+		
+		out.write("\"" + escape(value.toString()) + "\"");
 	}
 
 	/**
@@ -203,8 +209,11 @@ public class JSONValue {
 		
 		if(value instanceof List)
 			return JSONArray.toJSONString((List)value);
-		
-		return value.toString();
+			
+		if(value instanceof Date)
+			return "\"\\/Date("+((Date) value).getTime()+")\\/\"";
+					
+		return "\""+escape(value.toString())+"\"";
 	}
 
 	/**
@@ -248,9 +257,6 @@ public class JSONValue {
 				break;
 			case '\t':
 				sb.append("\\t");
-				break;
-			case '/':
-				sb.append("\\/");
 				break;
 			default:
                 //Reference: http://www.unicode.org/versions/Unicode5.1.0/

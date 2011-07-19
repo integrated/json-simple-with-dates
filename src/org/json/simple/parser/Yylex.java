@@ -619,7 +619,7 @@ int getPosition(){
           }
         case 36: break;
         case 15: 
-          { sb.append('/');
+          { sb.append("\\/");
           }
         case 37: break;
         case 10: 
