@@ -306,7 +306,7 @@ public class Test extends TestCase{
 		System.out.println("======array1==========");
 		System.out.println(array1);
 		System.out.println();
-		assertEquals("[\"abc\\u0010a\\/\",123,222.123,true]",array1.toString());
+		assertEquals("[\"abc\\u0010a/\",123,222.123,true]",array1.toString());
 		
 		JSONObject obj1=new JSONObject();
 		obj1.put("name","fang");
@@ -317,14 +317,14 @@ public class Test extends TestCase{
 		System.out.println("======obj1 with array1===========");
 		System.out.println(obj1);
 		System.out.println();
-		assertEquals("{\"array1\":[\"abc\\u0010a\\/\",123,222.123,true],\"weight\":60.21,\"age\":27,\"name\":\"fang\",\"is_developer\":true}",obj1.toString());
+		assertEquals("{\"array1\":[\"abc\\u0010a/\",123,222.123,true],\"weight\":60.21,\"age\":27,\"name\":\"fang\",\"is_developer\":true}",obj1.toString());
 		
 		obj1.remove("array1");
 		array1.add(obj1);
 		System.out.println("======array1 with obj1========");
 		System.out.println(array1);
 		System.out.println();
-		assertEquals("[\"abc\\u0010a\\/\",123,222.123,true,{\"weight\":60.21,\"age\":27,\"name\":\"fang\",\"is_developer\":true}]",array1.toString());
+		assertEquals("[\"abc\\u0010a/\",123,222.123,true,{\"weight\":60.21,\"age\":27,\"name\":\"fang\",\"is_developer\":true}]",array1.toString());
 	
 		List list = new ArrayList();
 		list.add("abc\u0010a/");
@@ -335,7 +335,7 @@ public class Test extends TestCase{
 		System.out.println("======list==========");
 		System.out.println(JSONArray.toJSONString(list));
 		System.out.println();
-		assertEquals("[\"abc\\u0010a\\/\",123,222.123,true,null]",JSONArray.toJSONString(list));
+		assertEquals("[\"abc\\u0010a/\",123,222.123,true,null]",JSONArray.toJSONString(list));
 		
 		Map map = new HashMap();
 		map.put("name","fang");
@@ -346,7 +346,7 @@ public class Test extends TestCase{
 		System.out.println("======map with list===========");
 		System.out.println(map);
 		System.out.println();
-		assertEquals("{\"array1\":[\"abc\\u0010a\\/\",123,222.123,true,null],\"weight\":60.21,\"age\":27,\"name\":\"fang\",\"is_developer\":true}",JSONObject.toJSONString(map));		
+		assertEquals("{\"array1\":[\"abc\\u0010a/\",123,222.123,true,null],\"weight\":60.21,\"age\":27,\"name\":\"fang\",\"is_developer\":true}",JSONObject.toJSONString(map));		
 		
         Map m1 = new LinkedHashMap();
         Map m2 = new HashMap();
