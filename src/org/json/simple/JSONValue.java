@@ -258,6 +258,15 @@ public class JSONValue {
 			case '\t':
 				sb.append("\\t");
 				break;
+			case '/':
+				// The sequence "</" is not allowed inside a script tag in HTML, so 
+				// we must escape the '/' character in that instance
+				if (i > 0 && s.charAt(i-1) == '<') {
+					sb.append("\\/");
+				} else {
+					sb.append(ch);
+				}
+				break;
 			default:
                 //Reference: http://www.unicode.org/versions/Unicode5.1.0/
 				if((ch>='\u0000' && ch<='\u001F') || (ch>='\u007F' && ch<='\u009F') || (ch>='\u2000' && ch<='\u20FF')){

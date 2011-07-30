@@ -12,7 +12,7 @@ import java.util.regex.*;
  */
 public class Yytoken {
     private final static Pattern datePattern = Pattern.compile("^\\\\/Date\\((-?\\d+)\\)\\\\/$");
-	private final static Pattern escapedSlashes = Pattern.compile("\\\\/");
+	private final static Pattern escapedSlashes = Pattern.compile("<\\\\/");
 
 	public static final int TYPE_VALUE=0;//JSON primitive value: string,number,boolean,null
 	public static final int TYPE_LEFT_BRACE=1;
@@ -36,8 +36,8 @@ public class Yytoken {
 				// parse any dates to a date object
 	            value = new Date(Long.parseLong(match.group(1)));
 	        } else {
-				// unescape any escaped slashes
-				value = escapedSlashes.matcher(((String) value)).replaceAll("/");
+				// unescape any escaped slashes in '<\/' sequences
+				value = escapedSlashes.matcher(((String) value)).replaceAll("</");
 			}
 		}
 		this.value=value;

@@ -14,7 +14,7 @@ public class YylexTest extends TestCase {
 		Yylex lexer=new Yylex(in);
 		Yytoken token=lexer.yylex();
 		assertEquals(Yytoken.TYPE_VALUE,token.type);
-		assertEquals("/",token.value);
+		assertEquals("\\/",token.value);
 		
 		s="\"abc\\/\\r\\b\\n\\t\\f\\\\\"";
 		System.out.println(s);
@@ -22,7 +22,7 @@ public class YylexTest extends TestCase {
 		lexer=new Yylex(in);
 		token=lexer.yylex();
 		assertEquals(Yytoken.TYPE_VALUE,token.type);
-		assertEquals("abc/\r\b\n\t\f\\",token.value);
+		assertEquals("abc\\/\r\b\n\t\f\\",token.value);
 		
 		s="[\t \n\r\n{ \t \t\n\r}";
 		System.out.println(s);
