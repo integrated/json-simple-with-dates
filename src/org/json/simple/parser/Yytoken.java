@@ -39,6 +39,11 @@ public class Yytoken {
 				// unescape any escaped slashes in '<\/' sequences
 				value = escapedSlashes.matcher(((String) value)).replaceAll("</");
 			}
+		} else if(type == TYPE_VALUE && value instanceof Long) {
+			// if value can be stored in an integer, store it in one
+	        if (((Long) value).longValue() == ((Long) value).intValue()) {
+	            value=new Integer(((Long) value).intValue());
+	        }
 		}
 		this.value=value;
 	}
